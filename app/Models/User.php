@@ -152,5 +152,22 @@ class User extends Authenticatable implements MustVerifyEmail
         //     return AfilieteDistibutes::find($cek);
         // }
     }
+    public function afl_mark(){
+        $mark = $this->afl_mark;
+        $cek_link = $this->afl_id;
+        $afl = AfilieteDistibutes::find($cek_link);
+        if( $mark != 0 && $afl){
+           if($mark == 1){
+            return $afl->manag;
+           }elseif($mark == 2){
+            return $afl->sub_manag;
+           }else{
+            return $afl->afl_user;
+           }
+        }else{
+            $afl =  AfilieteDistibutes::where('as_default',1)->first();
+            return $afl->afl_user;
+        }
+    }
 
 }

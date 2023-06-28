@@ -328,7 +328,8 @@ class ReferralController extends Controller
         $total_users = Referral::select(DB::raw("count(DISTINCT referred_id) as data"))->where('referrer_id', auth()->user()->id)->get();
         $total_commission = Referral::select(DB::raw("sum(commission) as data"))->where('referrer_id', auth()->user()->id)->get();
 
-        return view('user.referrals.referrals.index', compact('total_users', 'total_commission'));
+        $referals = User::where('referred_by',auth()->user()->id)->get();
+        return view('user.referrals.referrals.index', compact('total_users', 'total_commission','referals'));
     }
 
 }

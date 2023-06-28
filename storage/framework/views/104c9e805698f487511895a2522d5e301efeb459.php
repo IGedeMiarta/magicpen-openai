@@ -1,36 +1,34 @@
-@extends('layouts.app')
-
-@section('css')
+<?php $__env->startSection('css'); ?>
     <!-- Data Table CSS -->
-    <link href="{{ URL::asset('plugins/datatable/datatables.min.css') }}" rel="stylesheet" />
-@endsection
+    <link href="<?php echo e(URL::asset('plugins/datatable/datatables.min.css')); ?>" rel="stylesheet" />
+<?php $__env->stopSection(); ?>
 
-@section('page-header')
+<?php $__env->startSection('page-header'); ?>
     <!-- PAGE HEADER -->
     <div class="page-header mt-5-7">
         <div class="page-leftheader">
-            <h4 class="page-title mb-0">{{ __('My Referrals') }}</h4>
+            <h4 class="page-title mb-0"><?php echo e(__('My Referrals')); ?></h4>
             <ol class="breadcrumb mb-2">
-                <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}"><i
-                            class="fa-solid fa-badge-dollar mr-2 fs-12"></i>{{ __('User') }}</a></li>
-                <li class="breadcrumb-item" aria-current="page"><a href="{{ route('user.referral') }}">
-                        {{ __('Affiliate Program') }}</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="{{ url('#') }}">
-                        {{ __('My Referrals') }}</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo e(route('user.dashboard')); ?>"><i
+                            class="fa-solid fa-badge-dollar mr-2 fs-12"></i><?php echo e(__('User')); ?></a></li>
+                <li class="breadcrumb-item" aria-current="page"><a href="<?php echo e(route('user.referral')); ?>">
+                        <?php echo e(__('Affiliate Program')); ?></a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="<?php echo e(url('#')); ?>">
+                        <?php echo e(__('My Referrals')); ?></a></li>
             </ol>
         </div>
     </div>
     <!-- END PAGE HEADER -->
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
     <div class="row">
         <div class="col-xl-3 col-lg-6 col-md-6 col-xm-12">
             <div class="card overflow-hidden border-0">
                 <div class="card-body">
                     <i class="mdi mdi-account-multiple-plus text-primary fs-45 float-right"></i>
-                    <p class=" mb-3 fs-12 font-weight-bold mt-1">{{ __('Total Referred Users') }} <br> <span
-                            class="text-muted">({{ __('All Time') }})</span></p>
-                    <h2 class="mb-0"><span class="number-font-chars">{{ number_format($referals->count()) }}</span>
+                    <p class=" mb-3 fs-12 font-weight-bold mt-1"><?php echo e(__('Total Referred Users')); ?> <br> <span
+                            class="text-muted">(<?php echo e(__('All Time')); ?>)</span></p>
+                    <h2 class="mb-0"><span class="number-font-chars"><?php echo e(number_format($referals->count())); ?></span>
                     </h2>
                 </div>
             </div>
@@ -39,10 +37,10 @@
             <div class="card border-0">
                 <div class="card-body">
                     <i class="mdi mdi-basket-fill text-success fs-45 float-right"></i>
-                    <p class=" mb-3 fs-12 font-weight-bold mt-1">{{ __('Total Earned Commission') }} <br><span
-                            class="text-muted">({{ __('All Time') }})</span></p>
+                    <p class=" mb-3 fs-12 font-weight-bold mt-1"><?php echo e(__('Total Earned Commission')); ?> <br><span
+                            class="text-muted">(<?php echo e(__('All Time')); ?>)</span></p>
                     <h2 class="mb-0"><span
-                            class="number-font-chars">{!! config('payment.default_system_currency_symbol') !!}{{ number_format((float) $total_commission[0]['data'], 2, '.', '') }}</span>
+                            class="number-font-chars"><?php echo config('payment.default_system_currency_symbol'); ?><?php echo e(number_format((float) $total_commission[0]['data'], 2, '.', '')); ?></span>
                     </h2>
 
                 </div>
@@ -54,21 +52,23 @@
         <div class="col-lg-12 col-md-12 col-xm-12">
             <div class="card overflow-hidden border-0">
                 <div class="card-header">
-                    <h3 class="card-title">{{ __('Earned Commissions') }} <span
-                            class="text-muted">({{ __('All Time') }})</span></h3>
+                    <h3 class="card-title"><?php echo e(__('Earned Commissions')); ?> <span
+                            class="text-muted">(<?php echo e(__('All Time')); ?>)</span></h3>
                 </div>
                 <div class="card-body pt-2">
                     <!-- SET DATATABLE -->
                     <table id='paymentsReferralTable' class='table' width='100%'>
                         <thead>
                             <tr>
-                                <th width="10%" class="fs-10">{{ __('Purchase Date') }}</th>
-                                <th width="12%" class="fs-10">{{ __('Order ID') }}</th>
-                                <th width="10%" class="fs-10">{{ __('Total Payment') }}
-                                    ({{ config('payment.default_system_currency') }})</th>
-                                <th width="10%" class="fs-10">{{ __('Commision Rate') }}</th>
-                                <th width="7%" class="fs-10">{{ __('Earned Commissions') }}
-                                    ({{ config('payment.default_system_currency') }})</th>
+                                <th width="10%" class="fs-10"><?php echo e(__('Purchase Date')); ?></th>
+                                <th width="12%" class="fs-10"><?php echo e(__('Order ID')); ?></th>
+                                <th width="10%" class="fs-10"><?php echo e(__('Total Payment')); ?>
+
+                                    (<?php echo e(config('payment.default_system_currency')); ?>)</th>
+                                <th width="10%" class="fs-10"><?php echo e(__('Commision Rate')); ?></th>
+                                <th width="7%" class="fs-10"><?php echo e(__('Earned Commissions')); ?>
+
+                                    (<?php echo e(config('payment.default_system_currency')); ?>)</th>
                             </tr>
                         </thead>
                     </table> <!-- END SET DATATABLE -->
@@ -92,15 +92,15 @@
                             <th>Join At</th>
                         </thead>
                         <tbody>
-                            @foreach ($referals as $i => $item)
+                            <?php $__currentLoopData = $referals; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td>{{ $i + 1 }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->email }}</td>
-                                    <td>{{ $item->status }}</td>
-                                    <td>{{ date('d M Y', strtotime($item->created_at)) }}</td>
+                                    <td><?php echo e($i + 1); ?></td>
+                                    <td><?php echo e($item->name); ?></td>
+                                    <td><?php echo e($item->email); ?></td>
+                                    <td><?php echo e($item->status); ?></td>
+                                    <td><?php echo e(date('d M Y', strtotime($item->created_at))); ?></td>
                                 </tr>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
                 </div>
@@ -108,11 +108,11 @@
 
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('js')
+<?php $__env->startSection('js'); ?>
     <!-- Data Tables JS -->
-    <script src="{{ URL::asset('plugins/datatable/datatables.min.js') }}"></script>
+    <script src="<?php echo e(URL::asset('plugins/datatable/datatables.min.js')); ?>"></script>
     <script type="text/javascript">
         $(function() {
 
@@ -142,7 +142,7 @@
                 pagingType: 'full_numbers',
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('user.referral.referrals') }}",
+                ajax: "<?php echo e(route('user.referral.referrals')); ?>",
                 columns: [{
                         data: 'created-on',
                         name: 'created-on',
@@ -179,4 +179,6 @@
 
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/magic/resources/views/user/referrals/referrals/index.blade.php ENDPATH**/ ?>
