@@ -1,8 +1,14 @@
-#disable directory browsing
-Options -Indexes
-RewriteEngine on
-RewriteCond %{REQUEST_URI} !^public
+# Redict To Public
+<IfModule mod_rewrite.c>
+RewriteEngine On
 RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+#disable directory browsing
+# Options -Indexes
+# RewriteEngine on
+# RewriteCond %{REQUEST_URI} !^public
+# RewriteRule ^(.*)$ public/$1 [L]
 
 #PROTECT ENV FILE
 <Files .env>
